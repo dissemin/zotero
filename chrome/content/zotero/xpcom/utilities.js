@@ -1269,13 +1269,27 @@ Zotero.Utilities = {
 		
 		var fieldID, itemFieldID;
 		for(var field in item) {
-			if(field === "complete" || field === "itemID" || field === "attachments"
+			if(field === "complete" || field === "itemID"
 					|| field === "seeAlso") continue;
 			
 			var val = item[field];
 			
 			if(field === "itemType") {
 				newItem[field] = val;
+            } else if(field == "attachments") {
+                var documents = [];
+                for(var j=0; j<val.length; j++) {
+                    if(val[j].url) {
+                        documents.push({
+                            url:val[j].url,
+                            title:val[j].title,
+                            mimeType:val[j].mimeType
+                        });
+                    }
+
+                }
+                newItem[field] = documents;
+
 			} else if(field === "creators") {
 				// normalize creators
 				var n = val.length;
