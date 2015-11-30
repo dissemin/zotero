@@ -1283,7 +1283,8 @@ Zotero.Utilities = {
                         documents.push({
                             url:val[j].url,
                             title:val[j].title,
-                            mimeType:val[j].mimeType
+                            mimeType:val[j].mimeType,
+                            snapshot:val[j].snapshot
                         });
                     }
 
